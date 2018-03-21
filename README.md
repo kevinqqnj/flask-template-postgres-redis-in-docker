@@ -1,44 +1,32 @@
 # Flask app template - Advanced
 
-> an advanced Flask app template, integrated bunch of Flask functions/extensions for Admin, Security, blueprint, RESTful structure.
+> Running advanced Flask app template in Docker, with services of Postgresql and Rediss
+> Based on https://github.com/kevinqqnj/flask-template-advanced
 
-> fit for both python2 & python3
-
-> Thanks to: Miguel Grinberg "Flask Web Development"
-
-![snapshot](homepage-admin.png "snapshot")
+![snapshot]("flask in docker.png" "flask in docker.png")
 
 ## Features:
-- configurations in `/config.py`
-- Flask_Script: manage application, deployment, command line
-- Flask_sqlalchemy: powerful ORM
-- Flask_Migrate: manage database, upgrade/downgrade
-- Flask_Security: manage Registration/Login/Session/Token
-- Flask_Admin: admin dashboard for managing database, full CURD function
-- Blueprint for main and api, easy for expansion
+- One Docker, to develop anywhere with all same env.
+- Ready for use of services: Postgresql and Redis
 
-
-## Install
-
-``` bash
-# git clone
-# create virtual env
-python3 -m venv venv
-source venv/bin/activate
-# install python modules
-pip3 install -r requirements.txt
-```
+## Pre-requirements
+- Docker installed (that's all!)
 
 ## Start up
-```
-# setup database
-python manage.py deploy
-# create roles and Admin user
-python manage.py initrole
-# start development server
-python manage.py runserver
-```
-Bingo! Check app in your web browser at: http://localhost:5000, and http://localhost:5000/admin
+- git clone this repo.
+- cd to dir
+- docker-compose up --build
+- open http://localhost:5000, now flask and Redis should work!
+
+Configure Postgresql:
+- Open another terminal
+- use psql tool to create new database in postgres, e.g.: myapp_db
+- cd to dir
+- docker-compose run web bash
+- python manage.py deploy
+- python manage.py initrole
+
+Now open http://localhost:5000/admin, now flask and Postgresql should work!
 
 ## deploy to Heroku Server
 ready for deploy to [Heroku](https://www.heroku.com), `Procfile` and `runtime.txt` are included.
@@ -50,11 +38,3 @@ ready for deploy to [Heroku](https://www.heroku.com), `Procfile` and `runtime.tx
 ```
 for details, refer to: https://devcenter.heroku.com/articles/getting-started-with-python
 
-## Expansion
-For production app, you can easily expand functions as you wish, such as:
-- Flask_Compress
-- Flask_Cache
-- Flask_Redis
-
-
-> For a detailed explanation on how things work, check out the [guide (CHN)](https://www.jianshu.com/p/f37871e31231).
