@@ -1,6 +1,7 @@
 # Flask advanced template in Docker
 
-> Running advanced Flask app template in Docker, with services of Postgresql and Redis
+> Running advanced Flask app template in Docker, with services of Postgresql and Redis. 
+中文说明：https://www.jianshu.com/p/9b0f28119a70
 
 > Based on https://github.com/kevinqqnj/flask-template-advanced
 
