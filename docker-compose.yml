@@ -1,0 +1,53 @@
+version: '3'
+# docker-compose run web django-admin.py startproject composeexample .
+# docker volume create pgdata
+# docker volume create redis_data
+# docker-compose up --build
+# docker-compose run web bash
+# -> python manage.py migrate
+# -> python manage.py createsuperuser
+# create database by: psql -h localhost -p 5432 -U postgres
+#http://docs.gunicorn.org/en/latest/settings.html#logging
+# 有改动reload; logfile打印到stdout; log-level(info|debug)
+services:
+  web:
+    build: .
+    command: gunicorn -b 0.0.0.0:5000 --reload --access-logfile '-' --log-level info manage:app
+    env_file: .env
+    volumes:
+      - ./:/code
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+      - redis
+
+  # worker:
+  #   build: .
+  #   command: python manage.py runworker
+  #   env_file: .env
+  #   volumes:
+  #     - ./:/code
+  #   depends_on:
+  #     - db
+  #     - redis
+
+  redis:
+    image: redis
+    volumes:
+      - redis_data:/data
+    ports:
+      - "6379:6379"
+
+  db:
+    restart: always
+    image: postgres:9
+    env_file: .env
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+volumes:
+  redis_data:
+  pgdata:
