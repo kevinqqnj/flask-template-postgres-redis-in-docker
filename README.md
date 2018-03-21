@@ -1,9 +1,10 @@
-# Flask app template - Advanced
+# Flask advanced template in Docker
 
-> Running advanced Flask app template in Docker, with services of Postgresql and Rediss
+> Running advanced Flask app template in Docker, with services of Postgresql and Redis
+
 > Based on https://github.com/kevinqqnj/flask-template-advanced
 
-![snapshot]("flask in docker.png" "flask in docker.png")
+![snapshot](flask-in-docker.png "flask in docker.png")
 
 ## Features:
 - One Docker, to develop anywhere with all same env.
